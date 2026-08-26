@@ -1,0 +1,10 @@
+{
+  "name": "smartstock-inventory-management-system",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A professional inventory management system for small and medium businesses.",
+  "main": "server.js",
+  "scripts": {"start": "node server.js", "dev": "node server.js"},
+  "keywords": ["inventory-management", "nodejs", "crud", "stock-management"],
+  "license": "MIT"
+}
