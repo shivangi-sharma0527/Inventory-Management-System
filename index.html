@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#163a5f">
+<title>Auspify HRMS | Employee Management System</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- AUTHENTICATION -->
+<section id="authView" class="auth-view">
+  <div class="auth-panel">
+    <div class="brand auth-brand"><div class="brand-mark">A</div><div><strong>AUSPIFY</strong><span>Bring Future Through Tech</span></div></div>
+
+    <div id="loginPanel" class="auth-form-panel">
+      <p class="eyebrow">EMPLOYEE MANAGEMENT SYSTEM</p>
+      <h1>Welcome back</h1>
+      <p class="auth-subtitle">Sign in to manage your people, departments and reports.</p>
+      <form id="loginForm">
+        <label>Email address<div class="input-wrap"><span>✉</span><input id="loginEmail" type="email" placeholder="you@company.com" required autocomplete="username"></div></label>
+        <label>Password<div class="input-wrap"><span>●</span><input id="loginPassword" type="password" placeholder="Enter your password" required autocomplete="current-password"><button type="button" class="password-toggle" data-target="loginPassword">◉</button></div></label>
+        <div class="auth-row"><label class="check"><input id="rememberMe" type="checkbox"> Remember me</label><button type="button" class="text-btn" data-auth="forgot">Forgot password?</button></div>
+        <button class="primary-btn full" type="submit">Sign in <b>→</b></button>
+      </form>
+      <div class="demo-box"><strong>Demo administrator</strong><span>admin@auspify.com · Admin@123</span></div>
+      <p class="auth-switch">Don't have an account? <button type="button" class="text-btn" data-auth="signup">Create an account</button></p>
+    </div>
+
+    <div id="signupPanel" class="auth-form-panel hidden">
+      <p class="eyebrow">CREATE YOUR WORKSPACE</p>
+      <h1>Create an account</h1>
+      <p class="auth-subtitle">Set up your administrator account and start managing your organization.</p>
+      <form id="signupForm">
+        <div class="two-col">
+          <label>First name<input id="signupFirstName" required placeholder="First name"></label>
+          <label>Last name<input id="signupLastName" required placeholder="Last name"></label>
+        </div>
+        <label>Work email<input id="signupEmail" type="email" required placeholder="name@company.com"></label>
+        <label>Company / organization<input id="signupCompany" required placeholder="Your company name"></label>
+        <label>Password<div class="input-wrap"><input id="signupPassword" type="password" required minlength="8" placeholder="At least 8 characters"><button type="button" class="password-toggle" data-target="signupPassword">◉</button></div></label>
+        <label>Confirm password<input id="signupConfirm" type="password" required placeholder="Repeat password"></label>
+        <label class="check terms"><input id="signupTerms" type="checkbox" required> I agree to the terms and confirm this is an authorized account.</label>
+        <button class="primary-btn full" type="submit">Create account <b>→</b></button>
+      </form>
+      <p class="auth-switch">Already have an account? <button type="button" class="text-btn" data-auth="login">Sign in</button></p>
+    </div>
+
+    <div id="forgotPanel" class="auth-form-panel hidden">
+      <p class="eyebrow">ACCOUNT RECOVERY</p>
+      <h1>Reset your password</h1>
+      <p class="auth-subtitle">Enter your registered email and set a new password for this browser-based demo.</p>
+      <form id="forgotForm">
+        <label>Email address<input id="forgotEmail" type="email" required placeholder="you@company.com"></label>
+        <label>New password<input id="forgotPassword" type="password" required minlength="8" placeholder="At least 8 characters"></label>
+        <label>Confirm new password<input id="forgotConfirm" type="password" required placeholder="Repeat password"></label>
+        <button class="primary-btn full" type="submit">Reset password</button>
+      </form>
+      <p class="auth-switch"><button type="button" class="text-btn" data-auth="login">← Back to sign in</button></p>
+    </div>
+  </div>
+  <div class="auth-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow light">SMARTER PEOPLE OPERATIONS</p>
+      <h2>One professional workspace for your entire workforce.</h2>
+      <p>Manage employee records, departments, reporting and organizational data from one secure-looking, easy-to-use interface.</p>
+      <div class="hero-cards"><div>✓ Employee records</div><div>✓ Department management</div><div>✓ Search & filters</div><div>✓ Reports & exports</div><div>✓ Account management</div><div>✓ Responsive design</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="appView" class="app-shell hidden">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand"><div class="brand-mark">A</div><div><strong>AUSPIFY</strong><span>HRMS</span></div></div>
+  <nav class="nav">
+    <p class="nav-label">MAIN MENU</p>
+    <button class="nav-item active" data-page="dashboard"><span>⌂</span>Dashboard</button>
+    <button class="nav-item" data-page="employees"><span>♙</span>Employees</button>
+    <button class="nav-item" data-page="departments"><span>▦</span>Departments</button>
+    <button class="nav-item" data-page="reports"><span>▤</span>Reports</button>
+    <p class="nav-label">ADMINISTRATION</p>
+    <button class="nav-item" data-page="profile"><span>◉</span>My profile</button>
+    <button class="nav-item" data-page="settings"><span>⚙</span>Settings</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-help"><div class="help-icon">?</div><div><strong>Need help?</strong><small>Use the quick actions and filters</small></div></div>
+    <button class="nav-item" id="logoutBtn"><span>↪</span>Sign out</button>
+  </div>
+</aside>
+
+<main class="main-content">
+<header class="topbar">
+  <button class="mobile-menu" id="mobileMenuBtn">☰</button>
+  <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageTitle">Dashboard</strong></div>
+  <div class="topbar-actions">
+    <button class="icon-btn notification-btn" id="notificationBtn">♢<i></i></button>
+    <div class="profile-menu"><button class="profile-button" id="profileButton"><div class="avatar small" id="topAvatar">AU</div><div class="profile-text"><strong id="topUserName">Admin</strong><span id="topCompany">Administrator</span></div><span>⌄</span></button>
+      <div class="profile-dropdown hidden" id="profileDropdown"><button data-profile="profile">My profile</button><button data-profile="settings">Settings</button><hr><button data-profile="logout">Sign out</button></div>
+    </div>
+  </div>
+</header>
+<div class="content" id="content"></div>
+</main>
+</div>
+
+<!-- EMPLOYEE MODAL -->
+<div class="modal-backdrop hidden" id="employeeModal"><div class="modal modal-large">
+  <div class="modal-header"><div><p class="eyebrow">EMPLOYEE RECORD</p><h2 id="employeeModalTitle">Add employee</h2></div><button class="modal-close" data-close="employeeModal">×</button></div>
+  <form id="employeeForm"><input type="hidden" id="employeeId">
+    <div class="form-grid">
+      <label>First name<input id="firstName" required></label><label>Last name<input id="lastName" required></label>
+      <label>Work email<input id="employeeEmail" type="email" required></label><label>Phone<input id="employeePhone"></label>
+      <label>Department<select id="employeeDepartment" required></select></label><label>Job title<input id="employeeRole" required></label>
+      <label>Joining date<input id="employeeJoiningDate" type="date" required></label><label>Status<select id="employeeStatus"><option>Active</option><option>On Leave</option><option>Inactive</option></select></label>
+      <label>Location<input id="employeeLocation"></label><label>Employment type<select id="employeeType"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Intern</option></select></label>
+      <label class="span-2">Notes<textarea id="employeeNotes" rows="3"></textarea></label>
+    </div>
+    <div class="modal-footer"><button type="button" class="secondary-btn" data-close="employeeModal">Cancel</button><button class="primary-btn">Save employee</button></div>
+  </form>
+</div></div>
+
+<!-- DEPARTMENT MODAL -->
+<div class="modal-backdrop hidden" id="departmentModal"><div class="modal">
+  <div class="modal-header"><div><p class="eyebrow">ORGANIZATION</p><h2 id="departmentModalTitle">Add department</h2></div><button class="modal-close" data-close="departmentModal">×</button></div>
+  <form id="departmentForm"><input type="hidden" id="departmentId">
+    <div class="form-grid single"><label>Department name<input id="departmentName" required></label><label>Department head<input id="departmentHead"></label><label>Description<textarea id="departmentDescription" rows="4"></textarea></label></div>
+    <div class="modal-footer"><button type="button" class="secondary-btn" data-close="departmentModal">Cancel</button><button class="primary-btn">Save department</button></div>
+  </form>
+</div></div>
+
+<!-- PROFILE MODAL -->
+<div class="modal-backdrop hidden" id="profileEditModal"><div class="modal">
+  <div class="modal-header"><div><p class="eyebrow">ACCOUNT</p><h2>Edit profile</h2></div><button class="modal-close" data-close="profileEditModal">×</button></div>
+  <form id="profileForm"><div class="form-grid"><label>First name<input id="profileFirst" required></label><label>Last name<input id="profileLast" required></label><label>Email<input id="profileEmail" type="email" required></label><label>Company<input id="profileCompany" required></label><label class="span-2">Role<input id="profileRole"></label></div>
+  <div class="modal-footer"><button type="button" class="secondary-btn" data-close="profileEditModal">Cancel</button><button class="primary-btn">Save profile</button></div></form>
+</div></div>
+
+<!-- CONFIRM -->
+<div class="modal-backdrop hidden" id="confirmModal"><div class="modal confirm-modal"><div class="confirm-icon">!</div><h2 id="confirmTitle">Delete record?</h2><p id="confirmMessage">This action cannot be undone.</p><div class="modal-footer"><button class="secondary-btn" data-close="confirmModal">Cancel</button><button class="danger-btn" id="confirmBtn">Delete</button></div></div></div>
+<script src="app.js"></script>
+</body>
+</html>
